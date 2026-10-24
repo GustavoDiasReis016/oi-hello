@@ -15,7 +15,8 @@ create or replace function public.is_guardian(sid uuid) returns boolean language
 alter table public.profiles enable row level security;alter table public.students enable row level security;alter table public.enrollment_requests enable row level security;alter table public.attendance enable row level security;alter table public.payments enable row level security;alter table public.resources enable row level security;alter table public.events enable row level security;alter table public.gallery enable row level security;alter table public.messages enable row level security;alter table public.suggestions enable row level security;alter table public.contact_messages enable row level security;
 create policy "profile read own admin" on public.profiles for select to authenticated using(id=auth.uid() or public.is_admin());
 create policy "profile update own admin" on public.profiles for update to authenticated using(id=auth.uid() or public.is_admin()) with check(id=auth.uid() or public.is_admin());
-create policy "profile insert own" on public.profiles for insert to authenticated with check(id=auth.uid() or public.is_admin());
+-- Do not allow clients to insert profiles directly: the auth trigger creates safe default roles.
+-- This prevents a new account from assigning itself the admin role.
 create policy "admin students" on public.students for all to authenticated using(public.is_admin()) with check(public.is_admin());
 create policy "guardian linked students" on public.students for select to authenticated using(guardian_id=auth.uid());
 create policy "public enrollment submit" on public.enrollment_requests for insert to anon,authenticated with check(status='pending');
