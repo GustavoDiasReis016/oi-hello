@@ -1,24 +1,16 @@
-# Oi Hello
+# Instituto Somos Esporte
 
-oi
+Portal institucional em React + TypeScript + TanStack Start. Cores: azul-marinho, azul royal, amarelo e branco.
 
-This project was built with [Lovable](https://lovable.dev).
+## Configuração do Supabase
+1. Crie um projeto Supabase.
+2. Execute `supabase/migrations/20261024000000_instituto_somos_esporte.sql` no SQL Editor.
+3. Copie `.env.example` para `.env.local` e configure `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` com os dados públicos do projeto.
+4. Execute `bun install` e `bun run dev`.
+5. Crie a conta do proprietário no Supabase Auth. O perfil começa como responsável; para torná-lo admin, use o UPDATE comentado ao final da migration com o UUID correto.
 
-## Build with Lovable
+## Incluído
+Página institucional responsiva, horários, endereço, Instagram, WhatsApp, formulários de matrícula e contato, login Supabase, portal inicial, publicação de recursos/eventos e migration com tabelas para perfis, alunos, matrículas, presença, pagamentos, recursos, eventos, galeria, mensagens, sugestões e contato.
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/f41eb2c6-dfdd-4141-9191-3277d95c0605).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+## Antes de produção
+Ainda é necessário configurar/testar Supabase, criar cadastro e recuperação de senha no site, completar CRUD de pagamentos/frequência/galeria/mensagens/sugestões, testar RLS, configurar armazenamento, backups, consentimento/LGPD para dados de menores e integrar pagamentos se aplicável. Nunca exponha service_role em variáveis VITE_*.
